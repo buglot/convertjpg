@@ -4,6 +4,21 @@ from PIL import Image
 commend = sys.argv
 Errors=[]
 succeed=[]
+def doConvert(file,where,drop):
+    try:
+        new_file=""
+        abfile = os.path.join(where,file)
+        img = Image.open(abfile).convert('RGB')
+        namefile = file.split(".")
+        for d in namefile[:-1]:
+            new_file+=d
+            new_file = new_file+".jpg"
+            new_file_dir=os.path.join(drop,new_file)
+            img.save(new_file_dir)
+            succeed.append("Save Files!!!! : " +str(new_file))
+    except:
+        print("Error File:",file)
+
 class t:
     types=""
     bools=0
@@ -49,31 +64,12 @@ def commendDo(commend : list,types)->None:
         if(drop==""):
             drop=where
         for file in os.listdir(where):
-            try:
-                new_file=""
-                abfile = os.path.join(where,file)
-                img = Image.open(abfile).convert('RGB')
-                namefile = file.split(".")
-                for d in namefile[:-1]:
-                    new_file+=d
-                new_file = new_file+".jpg"
-                new_file_dir=os.path.join(drop,new_file)
-                img.save(new_file_dir)
-                succeed.append("Save Files!!!! : " +str(new_file))
-            except:
-                print("Error File:",file)
+            doConvert(file,where,drop)
             
     if  types =="fd":
         if drop =="":
             drop=file
-        try:
-            new_file=""
-            img = Image.open(os.path.join(where,file))
-            file = file.split(".")
-            for d in file[:-1]:
-                new_file+=d
-            img.save(os.path.join(new_file,file) + ".jpg")
-        except: print("Error File:",file)
+        doConvert(file,where,drop)
 if(len(commend)==1):
     print("-help to useing")
     input()
