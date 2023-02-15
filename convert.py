@@ -1,7 +1,7 @@
 import sys
 import os
 from PIL import Image 
-commend = sys.argv
+
 Errors=[]
 succeed=[]
 def doConvert(file,where,drop):
@@ -30,12 +30,11 @@ def checkCommendOutError(commendlist : list)->t:
     d=0
     f=0
     for x in commendlist:
-        
         if(x=="-w"):
             w+=1
-        if(d=="-d"):
+        if(x=="-d"):
             d+=1
-        if(f=="-f"):
+        if(x=="-f"):
             f+=1
     if w==1 and d == 1:
         return t("wd",True)
@@ -45,6 +44,7 @@ def checkCommendOutError(commendlist : list)->t:
         return t("wd",True)
     elif f==1 and w==0:
         return t("fd",True)
+    print(w,d,f)
     return t(0,False)
 def commendDo(commend : list,types)->None:
     where=""
@@ -70,14 +70,20 @@ def commendDo(commend : list,types)->None:
         if drop =="":
             drop=file
         doConvert(file,where,drop)
-if(len(commend)==1):
-    print("-help to useing")
-    input()
-else:
-    a = checkCommendOutError(commend)
-    if(a.bools):
-        commendDo(commend,a.types)
-    else:
+
+def main():
+    commend = sys.argv
+    if(len(commend)==1):
         print("-help to useing")
         input()
-print(*succeed ,sep="\n")
+    else:
+        a = checkCommendOutError(commend)
+        if(a.bools):
+            commendDo(commend,a.types)
+        else:
+            print("-help to useing #type",a.types)
+            input()
+    print(*succeed ,sep="\n")
+
+if __name__ == "__main__":
+    main()
