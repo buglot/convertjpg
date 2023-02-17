@@ -19,6 +19,7 @@ if __name__ == "__main__":
     if(len(commend)==1):
         print(help)
         os.system(f'{commend[0]} -gui')
+        exit()
     else:
         if commend[1] == "-help":
             print(help)
