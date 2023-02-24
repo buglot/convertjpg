@@ -44,6 +44,7 @@ class ConvertGUI(QWidget):
 
         if self.convert.where!="":
             self.runFileFolder()
+            self.doConB.setEnabled(True)
 
     def opensFolder(self):
         e=""
@@ -89,7 +90,7 @@ class ConvertGUI(QWidget):
             a=ss.text().split(" : ")
             if a[0] == "Error File":
                 textfile = os.path.join(self.convert.where,a[1])
-            elif a[0] == "Save Files!":
+            elif a[0] == "Save File!":
                 textfile = os.path.join(self.convert.where,a[1])
             if textfile!="":    
                 if os.path.exists(textfile):
