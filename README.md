@@ -1,6 +1,9 @@
 # convertjpg
 
-> `pip install Pillow`
+> ```
+> pip install Pillow
+> pin install PyQt6
+> ```
 
 ### download
 >[Convertjpg.exe for windows](https://github.com/buglot/convertjpg/releases/download/v1.0.0.0/convertJPG.exe) (v1.0.0.0 GUI)<br>
