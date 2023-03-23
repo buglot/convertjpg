@@ -90,10 +90,11 @@ class ConvertGUI(QWidget):
             a=ss.text().split(" : ")
             if a[0] == "Error File":
                 textfile = os.path.join(self.convert.where,a[1])
-            elif a[0] == "Save File!":
+            elif a[0] == "Save Files!":
                 textfile = os.path.join(self.convert.where,a[1])
             if textfile!="":    
                 if os.path.exists(textfile):
+                    
                     os.system(f'"{textfile}"')
             else:
                 textfile = os.path.join(self.convert.where,a[1])
